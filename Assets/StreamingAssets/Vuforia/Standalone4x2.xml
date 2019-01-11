@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="Standalone4x2"/>
+</Tracking>
+
+<Assembly name="Standalone4x2s_assembly">
+<Part name="Standalone4x2" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="-1.25958e-10 0.00931817 0.879927" rotation="AD: 0.9992741569018166 0.10422581782012935 -0.4070958053357096 206.558">
+
+</EntryPoint>
+
+</Assembly>
+</QCARConfig>
