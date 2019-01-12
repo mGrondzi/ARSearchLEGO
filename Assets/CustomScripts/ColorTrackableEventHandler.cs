@@ -28,6 +28,7 @@ public class ColorTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
     #endregion // PROTECTED_MEMBER_VARIABLES
 
     public Text m_MyText;
+    private RenderTexture renderTexture;
 
     #region UNITY_MONOBEHAVIOUR_METHODS
 
@@ -136,23 +137,46 @@ public class ColorTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
         //yield return new WaitForEndOfFrame();
         if (Screen.orientation == ScreenOrientation.Portrait || Screen.orientation == ScreenOrientation.PortraitUpsideDown)
         {
+            renderTexture = new RenderTexture(mainCamera.pixelWidth, mainCamera.pixelHeight, 24);
+            mainCamera.targetTexture = renderTexture;
+            RenderTexture.active = renderTexture;
+            mainCamera.Render();
+            Texture2D m_Texture = new Texture2D(mainCamera.pixelWidth, mainCamera.pixelHeight, TextureFormat.RGB24, false);
+            m_Texture.ReadPixels(new Rect(0, 0, mainCamera.pixelWidth, mainCamera.pixelHeight), 0, 0);
+            m_Texture.Apply();
             Debug.Log("X: " + objectTargetPosition.x + " Y: " + objectTargetPosition.y);
+
             this.m_MyText.text = "X: " + objectTargetPosition.x + " Y: " + objectTargetPosition.y;
+            //Texture2D m_Texture = new Texture2D(mainCamera.pixelWidth, mainCamera.pixelHeight, TextureFormat.RGBA32, false);
+           // m_Texture.ReadPixels(new Rect(0, 0, mainCamera.pixelWidth, mainCamera.pixelHeight), 0, 0, true);
+          //  m_Texture.Apply();
 
             // mainCamera = Camera.main.GetComponent<Camera>();
-            RenderTexture renderTex = new RenderTexture(Screen.width, Screen.height, 24);
-            mainCamera.targetTexture = renderTex;
-            RenderTexture.active = renderTex;
-            mainCamera.Render();
-            Texture2D screenshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-            screenshot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), (int)objectTargetPosition.x, (int)objectTargetPosition.y);
-            screenshot.Apply();
+            //Texture2D m_Texture = new Texture2D(mainCamera.pixelWidth, mainCamera.pixelHeight, TextureFormat.RGBA32, false);
+            //RenderTexture currentRT = RenderTexture.active;
+            //RenderTexture renderTexture = new RenderTexture(mainCamera.pixelWidth, mainCamera.pixelHeight, 32);
+            //Graphics.Blit(m_Texture, renderTexture);
+            //RenderTexture.active = renderTexture;
+            //m_Texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), (int)objectTargetPosition.x, (int)objectTargetPosition.y);
+            Color screenshot = m_Texture.GetPixel((int)objectTargetPosition.x, (int)objectTargetPosition.y);
+            //RenderTexture renderTex = new RenderTexture(Screen.width, Screen.height, 24);
+            //mainCamera.targetTexture = renderTex;
+            //RenderTexture.active = renderTex;
+            //mainCamera.Render();
+            //Texture2D screenshot = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+            //screenshot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), (int)objectTargetPosition.x, (int)objectTargetPosition.y);
+            //Graphics.Blit(mainTexture, renderTexture);
+            //screenshot.Apply();
             //Color pixelColor = screenshot.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), (int)objectTargetPosition.x, (int)objectTargetPosition.y);
-            Color pixelColor = screenshot.GetPixel((int)objectTargetPosition.x, (int)objectTargetPosition.y);
-            Debug.Log("Color: " + pixelColor.ToString());
+           // Color pixelColor = screenshot.GetPixel((int)objectTargetPosition.x, Screen.height - (int)objectTargetPosition.y);
+            Debug.Log("Color: " + screenshot.ToString());
             RenderTexture.active = null;
             mainCamera.targetTexture = null;
-        } 
+        }
+        if (Screen.orientation == ScreenOrientation.LandscapeLeft || Screen.orientation == ScreenOrientation.LandscapeRight)
+        {
+
+        }
 
         //Vector3 objectTargetPosition = cam.WorldToScreenPoint(mTrackableBehaviour.transform.position);
         //Debug.Log("Object detected on X: " + objectTargetPosition.x + " Y: " + objectTargetPosition.y);
