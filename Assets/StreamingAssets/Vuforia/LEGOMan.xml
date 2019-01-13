@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="LEGOMan"/>
+</Tracking>
+
+<Assembly name="LEGOMans_assembly">
+<Part name="LEGOMan" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="-26.6751 24.9787 308.91" rotation="AD: 0.9999904066340529 0.030102996871888776 -0.1500680140662654 202.431">
+
+</EntryPoint>
+
+</Assembly>
+</QCARConfig>
