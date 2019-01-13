@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
+  <TargetSet version="5.0" toolVersion="4.2.0">
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-13 16:01:45" name="LEGOManBack" targetId="49a71e6f6073442daceaf0cbfc8b421b" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-13 15:54:44" name="LEGOManFront" targetId="7c390b6efb1d45a6b803a96542681e37" version="2.0" />
+  </TargetSet>
+</QCARInfo>
