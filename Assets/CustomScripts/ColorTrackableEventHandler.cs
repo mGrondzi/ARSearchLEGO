@@ -12,6 +12,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 
+
+
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
 /// 
@@ -144,9 +146,9 @@ public class ColorTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
             Texture2D m_Texture = new Texture2D(mainCamera.pixelWidth, mainCamera.pixelHeight, TextureFormat.RGB24, false);
             m_Texture.ReadPixels(new Rect(0, 0, mainCamera.pixelWidth, mainCamera.pixelHeight), 0, 0);
             m_Texture.Apply();
-            Debug.Log("X: " + objectTargetPosition.x + " Y: " + objectTargetPosition.y);
+            Debug.Log(mTrackableBehaviour.gameObject.name+" X: " + objectTargetPosition.x + " Y: " + objectTargetPosition.y);
 
-            this.m_MyText.text = "X: " + objectTargetPosition.x + " Y: " + objectTargetPosition.y;
+            this.m_MyText.text = mTrackableBehaviour.gameObject.name + " X: " + objectTargetPosition.x + " Y: " + objectTargetPosition.y;
             //Texture2D m_Texture = new Texture2D(mainCamera.pixelWidth, mainCamera.pixelHeight, TextureFormat.RGBA32, false);
            // m_Texture.ReadPixels(new Rect(0, 0, mainCamera.pixelWidth, mainCamera.pixelHeight), 0, 0, true);
           //  m_Texture.Apply();
@@ -200,47 +202,5 @@ public class ColorTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
        // Debug.Log(m_Texture.GetPixel((int)objectTargetPosition.x, (int)objectTargetPosition.y).g);
     }
 
-    private void SwapActiveDatasets(string datasetToActivate)
-    {
-        // ObjectTracker tracks targets contained in a DataSet and provides methods for creating and (de)activating datasets.
-        ObjectTracker objectTracker = TrackerManager.Instance.GetTracker<ObjectTracker>();
-        IEnumerable<DataSet> datasets = objectTracker.GetDataSets();
-
-        IEnumerable<DataSet> activeDataSets = objectTracker.GetActiveDataSets();
-        List<DataSet> activeDataSetsToBeRemoved = activeDataSets.ToList();
-
-        // 1. Loop through all the active datasets and deactivate them.
-        foreach (DataSet ads in activeDataSetsToBeRemoved)
-        {
-            objectTracker.DeactivateDataSet(ads);
-        }
-
-        // Swapping of the datasets should NOT be done while the ObjectTracker is running.
-        // 2. So, Stop the tracker first.
-        objectTracker.Stop();
-
-        // 3. Then, look up the new dataset and if one exists, activate it.
-        foreach (DataSet ds in datasets)
-        {
-            if (ds.Path.Contains(datasetToActivate))
-            {
-                objectTracker.ActivateDataSet(ds);
-            }
-        }
-
-        // 4. Loop through the trackable behaviours and set the GuideView.
-        IEnumerable<TrackableBehaviour> tbs = TrackerManager.Instance.GetStateManager().GetTrackableBehaviours();
-        foreach (TrackableBehaviour tb in tbs)
-        {
-            if (tb is ModelTargetBehaviour && tb.isActiveAndEnabled)
-            {
-                Debug.Log("TrackableName: " + tb.TrackableName);
-                (tb as ModelTargetBehaviour).GuideViewMode = ModelTargetBehaviour.GuideViewDisplayMode.GuideView2D;
-            }
-
-        }
-
-        // 5. Finally, restart the object tracker.
-        objectTracker.Start();
-    }
+   
 }
