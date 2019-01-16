@@ -12,15 +12,13 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-
-
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
 /// 
 /// Changes made to this file could be overwritten when upgrading the Vuforia version. 
 /// When implementing custom event handler behavior, consider inheriting from this class instead.
 /// </summary>
-public class ColorTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
+public class ObjectTrackerTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 {
     #region PROTECTED_MEMBER_VARIABLES
 
@@ -31,6 +29,8 @@ public class ColorTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
 
     public Text m_MyText;
     private RenderTexture renderTexture;
+    private bool activateTracking = false;
+    private bool objectTracking = true;
 
     #region UNITY_MONOBEHAVIOUR_METHODS
 
@@ -59,9 +59,9 @@ public class ColorTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
         TrackableBehaviour.Status previousStatus,
         TrackableBehaviour.Status newStatus)
     {
-        if (newStatus == TrackableBehaviour.Status.DETECTED ||
+        if ((newStatus == TrackableBehaviour.Status.DETECTED ||
                 newStatus == TrackableBehaviour.Status.TRACKED ||
-                newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED)
+                newStatus == TrackableBehaviour.Status.EXTENDED_TRACKED) && activateTracking && objectTracking)
         {
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
             this.TakeScreenShotOfObject();
@@ -175,10 +175,6 @@ public class ColorTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
             RenderTexture.active = null;
             mainCamera.targetTexture = null;
         }
-        if (Screen.orientation == ScreenOrientation.LandscapeLeft || Screen.orientation == ScreenOrientation.LandscapeRight)
-        {
-
-        }
 
         //Vector3 objectTargetPosition = cam.WorldToScreenPoint(mTrackableBehaviour.transform.position);
         //Debug.Log("Object detected on X: " + objectTargetPosition.x + " Y: " + objectTargetPosition.y);
@@ -202,5 +198,60 @@ public class ColorTrackableEventHandler : MonoBehaviour, ITrackableEventHandler
        // Debug.Log(m_Texture.GetPixel((int)objectTargetPosition.x, (int)objectTargetPosition.y).g);
     }
 
-   
+    public void toggleLEGOManObjectTracker(int pickedObject)
+    {
+        if (pickedObject == 2)
+        {
+            // TrackerManager.Instance.GetTracker<ObjectTracker>().Start();
+            activateTracking = true;
+            Debug.Log("Started LEGOMan Tracking");
+        }
+        else
+        {
+            // TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
+            //SwapActiveDatasets();
+            activateTracking = false;
+            Debug.Log("Stoped LEGOMan Tracking");
+        }
+    }
+
+    public void toggle2x2ObjectTracker(int pickedObject)
+    {
+        if (pickedObject == 0)
+        {
+            // TrackerManager.Instance.GetTracker<ObjectTracker>().Start();
+            activateTracking = true;
+            Debug.Log("Started LEGOMan Tracking");
+        }
+        else
+        {
+            // TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
+            //SwapActiveDatasets();
+            activateTracking = false;
+            Debug.Log("Stoped LEGOMan Tracking");
+        }
+    }
+
+    public void toggle4x2ObjectTracker(int pickedObject)
+    {
+        if (pickedObject == 1)
+        {
+            // TrackerManager.Instance.GetTracker<ObjectTracker>().Start();
+            activateTracking = true;
+            Debug.Log("Started LEGOMan Tracking");
+        }
+        else
+        {
+            // TrackerManager.Instance.GetTracker<ObjectTracker>().Stop();
+            //SwapActiveDatasets();
+            activateTracking = false;
+            Debug.Log("Stoped LEGOMan Tracking");
+        }
+    }
+
+    public void toogleObjectTracking(bool enable)
+    {
+        this.objectTracking = enable;
+    }
+
 }
