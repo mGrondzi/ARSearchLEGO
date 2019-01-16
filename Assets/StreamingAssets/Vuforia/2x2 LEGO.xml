@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="2x2 LEGO"/>
+</Tracking>
+
+<Assembly name="2x2 LEGOs_assembly">
+<Part name="2x2 LEGO" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="68.7531 37.8623 700.372" rotation="AD: 0.9999845121203761 0.04477186130764768 -0.13237018242997545 217.039">
+
+</EntryPoint>
+
+</Assembly>
+</QCARConfig>
