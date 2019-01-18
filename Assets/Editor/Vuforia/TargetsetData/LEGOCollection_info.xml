@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
   <TargetSet version="5.0" toolVersion="4.2.0">
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-16 10:46:34" name="2x2_4" targetId="89f530d78d8740e28c0512344d2fc5f3" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-16 10:41:57" name="2x2_3" targetId="9886a96991f2408ab71e9a1a59f83990" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-16 10:38:38" name="2x2_2" targetId="932d4728dd3a44a885f79a16b0d0925b" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-16 10:34:36" name="2x2" targetId="039d843c128c415bb5b487193db7910f" version="2.0" />
     <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-09 15:48:07" name="LegoNeuGruen" targetId="99d5cbc4c5c24e8c927b741e4888220e" version="2.0" />
     <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-08-02 12:13:07" name="2Lego4x2" targetId="3989cf8204f74b98871f951bf75baf0f" version="2.0" />
     <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2019-01-09 15:27:14" name="legomann" targetId="351928771ed947469d1fc12b4baf349c" version="2.0" />
